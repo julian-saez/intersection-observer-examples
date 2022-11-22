@@ -1,11 +1,9 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import Unocss from 'unocss/vite';
 
 export default defineConfig({
-  plugins: [solidPlugin()],
-  server: {
-    port: 3000,
-  },
+  plugins: [solidPlugin(), Unocss()],
   build: {
     target: 'esnext',
   },
