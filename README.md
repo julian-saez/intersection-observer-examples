@@ -1,4 +1,4 @@
-# Intersection Observer Examples
+# Intersection Observer Examples For SolidJS
 
 This is an example using createViewportObserver to add an animation entrace when the user is scrolling. Just one time without repeat.
 
