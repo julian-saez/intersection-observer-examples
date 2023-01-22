@@ -37,7 +37,7 @@ const App: Component = () => {
                 }}
             </section>
 
-            <section class="relative bg-gray-700 w-full h-[60vh] flex flex-col">
+            <section class="relative bg-gray-700 w-full h-auto">
                 {() => {
                     const [intersectionObserver] = createViewportObserver();
                     const [isVisible, setVisible] = createSignal<boolean>(false);
@@ -53,17 +53,24 @@ const App: Component = () => {
                                     }
                                 }}
                             ></div> 
-                            <div class="bg-[#cfffe4] grid grid-cols-2 gap-x-4 p-14 w-full h-full">
+                            <div class="bg-[#cfffe4] ds:grid ds:gap-y-6 xl:grid xl:grid-cols-2 xl:gap-x-4 p-14 w-full">
                                 <div
                                     classList={{
-                                        'bg-[#252a58] rounded-3xl w-full animate__animated animate__fadeInUp':
+                                        'bg-[#252a58] rounded-3xl w-full ds:h-[12rem] xl:h-[30rem] animate__animated animate__fadeInUp':
                                             isVisible(),
                                     }}
                                 ></div>
 
                                 <div
                                     classList={{
-                                        'bg-[#252a58] rounded-3xl w-full animate__animated animate__fadeInUp':
+                                        'bg-[#252a58] rounded-3xl w-full ds:h-[26rem] xl:h-[30rem] animate__animated animate__fadeInUp':
+                                            isVisible(),
+                                    }}
+                                ></div>
+
+                                <div
+                                    classList={{
+                                        'bg-[#252a58] rounded-3xl w-full ds:h-[8rem] xl:hidden animate__animated animate__fadeInUp':
                                             isVisible(),
                                     }}
                                 ></div>
@@ -82,7 +89,7 @@ const App: Component = () => {
                             return(
                                 <>
                                     {/* This is only a flag */}
-                                    <div class="relative h-48 w-full flex items-center px-20 my-10">
+                                    <div class="relative h-48 w-full flex items-center px-10 my-10">
                                         <div
                                             class="flag absolute top-36 w-full"
                                             use:intersectionObserver={(e) => {
@@ -98,8 +105,8 @@ const App: Component = () => {
                                                 'flex px-10 items-center w-full bg-[#cfffe4] rounded-3xl h-full animate__animated animate__fadeInUp': isVisible(),
                                             }}
                                         >
-                                            <div class="rounded-full bg-[#252a58] w-32 h-32"></div>
-                                            <div class="font-semibold text-3xl pl-8">{ element.username }</div>
+                                            <div class="rounded-full bg-[#252a58] min-w-32 min-h-32"></div>
+                                            <div class="font-semibold text-3xl pl-8 truncate">{ element.username }</div>
                                         </div>
                                     </div>
                                 </>

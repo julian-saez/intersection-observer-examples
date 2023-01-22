@@ -7,6 +7,10 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {},
+    screens: {
+      ds: { max: '620px' },
+      xl: { min: '620px' }
+    },
   },
   plugins: [],
 };
