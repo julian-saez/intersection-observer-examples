@@ -25,7 +25,7 @@ const App: Component = () => {
                                 }
                             }}
                         >
-                            <p class="text-5xl w-8/12 text-[#cfffe4] font-black leading-[4rem] text-center">
+                            <p class="text-[#cfffe4] text-center font-black ds:text-3xl ds:leading-[2.7rem] ds:9/12 xl:w-8/12 xl:text-5xl xl:leading-[4rem]">
                                 Examples using{' '}
                                 <a href="https://github.com/solidjs-community/solid-primitives/tree/main/packages/intersection-observer">
                                     Intersection Observer
