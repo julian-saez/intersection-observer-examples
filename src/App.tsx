@@ -1,21 +1,22 @@
-import type { Component } from 'solid-js';
+import { Component, For } from 'solid-js';
 import { createViewportObserver } from '@solid-primitives/intersection-observer';
 import { createSignal } from 'solid-js';
+import Users from './users';
 import 'animate.css';
 import 'uno.css';
 
 const App: Component = () => {
     return (
         <>
-            <section class="bg-gray-600 w-full h-screen flex flex-col justify-center">
+            <section class="bg-[#252a58] w-full h-screen flex flex-col justify-center">
                 {() => {
                     const [isVisible, setVisible] = createSignal<boolean>(false);
                     const [intersectionObserver] = createViewportObserver();
                     return (
                         <div
-                            class="text-left ml-20"
+                            class="w-full flex justify-center"
                             classList={{
-                                'animate__animated animate__fadeInLeft': isVisible(),
+                                'animate__animated animate__fadeInUp': isVisible(),
                             }}
                             use:intersectionObserver={(e) => {
                                 // I set the signal only one time when it's false to prevent infinity animations on this section
@@ -24,10 +25,7 @@ const App: Component = () => {
                                 }
                             }}
                         >
-                            <p class="font-medium text-white text-4xl mb-2">
-                                SolidJS Primitives
-                            </p>
-                            <p class="text-2xl text-white">
+                            <p class="text-5xl w-8/12 text-[#cfffe4] font-black leading-[4rem] text-center">
                                 Examples using{' '}
                                 <a href="https://github.com/solidjs-community/solid-primitives/tree/main/packages/intersection-observer">
                                     Intersection Observer
@@ -39,7 +37,7 @@ const App: Component = () => {
                 }}
             </section>
 
-            <section class="relative bg-gray-700 w-full h-screen">
+            <section class="relative bg-gray-700 w-full h-[60vh] flex flex-col">
                 {() => {
                     const [intersectionObserver] = createViewportObserver();
                     const [isVisible, setVisible] = createSignal<boolean>(false);
@@ -54,68 +52,61 @@ const App: Component = () => {
                                         setVisible(e.isIntersecting);
                                     }
                                 }}
-                            ></div>
-                            <div class="grid grid-cols-2 p-14 w-full h-full">
+                            ></div> 
+                            <div class="bg-[#cfffe4] grid grid-cols-2 gap-x-4 p-14 w-full h-full">
                                 <div
                                     classList={{
-                                        'bg-cyan-500 w-full h-full rounded-3xl animate__animated animate__fadeInUp':
+                                        'bg-[#252a58] rounded-3xl w-full animate__animated animate__fadeInUp':
                                             isVisible(),
                                     }}
                                 ></div>
 
-                                <div class="ml-4 w-full h-full grid">
-                                    <div
-                                        classList={{
-                                            'bg-cyan-400 rounded-3xl w-full mb-2 animate__animated animate__fadeInUp':
-                                                isVisible(),
-                                        }}
-                                    ></div>
-
-                                    <div
-                                        classList={{
-                                            'bg-cyan-300 rounded-3xl w-full mt-2 animate__animated animate__fadeInUp':
-                                                isVisible(),
-                                        }}
-                                    ></div>
-                                </div>
+                                <div
+                                    classList={{
+                                        'bg-[#252a58] rounded-3xl w-full animate__animated animate__fadeInUp':
+                                            isVisible(),
+                                    }}
+                                ></div>
                             </div>
                         </>
                     );
                 }}
             </section>
 
-            <section class="relative bg-neutral-800 w-full h-[70vh] flex flex-col items-center justify-center">
-                {() => {
-                    const [isVisible, setVisible] = createSignal<boolean>(false);
-                    const [intersectionObserver] = createViewportObserver();
-                    return (
-                        <>
-                            {/* This is only a flag */}
-                            <div
-                                class="flag absolute top-36 w-full"
-                                use:intersectionObserver={(e) => {
-                                    // I set the signal only one time when it's false to prevent infinity animations on this section
-                                    if (!isVisible()) {
-                                        setVisible(e.isIntersecting);
-                                    }
-                                }}
-                            ></div>
-                            <div class="text-white font-medium text-3xl mb-12">
-                                Lorem Ipsu
-                            </div>
-                            <div
-                                class="flex justify-around w-full h-1/2"
-                                classList={{
-                                    'animate__animated animate__zoomIn': isVisible(),
-                                }}
-                            >
-                                <div class="bg-cyan-300 w-1/4 rounded-3xl h-64"></div>
-                                <div class="bg-cyan-300 w-1/4 rounded-3xl h-64"></div>
-                                <div class="bg-cyan-300 w-1/4 rounded-3xl h-64"></div>
-                            </div>
-                        </>
-                    );
-                }}
+            <section class="relative bg-[#252a58] py-10 w-full h-auto">
+                <For each={ Users }>
+                    {
+                        ( element ) => {
+                            const [ isVisible, setVisible ] = createSignal<boolean>(false);
+                            const [ intersectionObserver ] = createViewportObserver();
+                            return(
+                                <>
+                                    {/* This is only a flag */}
+                                    <div class="relative h-48 w-full flex items-center px-20 my-10">
+                                        <div
+                                            class="flag absolute top-36 w-full"
+                                            use:intersectionObserver={(e) => {
+                                                // I set the signal only one time when it's false to prevent infinity animations on this section
+                                                if (!isVisible()) {
+                                                    setVisible(e.isIntersecting);
+                                                }
+                                            }}
+                                        ></div>
+                                        <div
+                                            classList={{
+                                                'hidden': !isVisible(),
+                                                'flex px-10 items-center w-full bg-[#cfffe4] rounded-3xl h-full animate__animated animate__fadeInUp': isVisible(),
+                                            }}
+                                        >
+                                            <div class="rounded-full bg-[#252a58] w-32 h-32"></div>
+                                            <div class="font-semibold text-3xl pl-8">{ element.username }</div>
+                                        </div>
+                                    </div>
+                                </>
+                            );
+                        }
+                    }
+                </For>
             </section>
         </>
     );
