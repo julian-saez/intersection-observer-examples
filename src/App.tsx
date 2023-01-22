@@ -8,7 +8,7 @@ import 'uno.css';
 const App: Component = () => {
     return (
         <>
-            <section class="bg-[#252a58] w-full h-screen flex flex-col justify-center">
+            <section class="bg-[#252a58] w-full h-screen flex flex-col justify-center ds:px-7">
                 {() => {
                     const [isVisible, setVisible] = createSignal<boolean>(false);
                     const [intersectionObserver] = createViewportObserver();
@@ -25,7 +25,7 @@ const App: Component = () => {
                                 }
                             }}
                         >
-                            <p class="text-[#cfffe4] text-center font-black ds:text-3xl ds:leading-[2.7rem] ds:9/12 xl:w-8/12 xl:text-5xl xl:leading-[4rem]">
+                            <p class="text-[#cfffe4] text-center font-black ds:text-3xl ds:leading-[2.7rem] xl:w-8/12 xl:text-5xl xl:leading-[4rem]">
                                 Examples using{' '}
                                 <a href="https://github.com/solidjs-community/solid-primitives/tree/main/packages/intersection-observer">
                                     Intersection Observer
@@ -53,7 +53,7 @@ const App: Component = () => {
                                     }
                                 }}
                             ></div> 
-                            <div class="bg-[#cfffe4] ds:grid ds:gap-y-6 xl:grid xl:grid-cols-2 xl:gap-x-4 p-14 w-full">
+                            <div class="bg-[#cfffe4] ds:px-7 ds:py-14 ds:grid ds:gap-y-6 xl:grid xl:grid-cols-2 xl:gap-x-4 xl:px-10 xl:py-24 w-full">
                                 <div
                                     classList={{
                                         'bg-[#252a58] rounded-3xl w-full ds:h-[12rem] xl:h-[30rem] animate__animated animate__fadeInUp':
@@ -80,7 +80,7 @@ const App: Component = () => {
                 }}
             </section>
 
-            <section class="relative bg-[#252a58] py-10 w-full h-auto">
+            <section class="relative bg-[#252a58] ds:px-7 ds:py-6 xl:px-10 xl:py-10 w-full h-auto">
                 <For each={ Users }>
                     {
                         ( element ) => {
@@ -89,7 +89,7 @@ const App: Component = () => {
                             return(
                                 <>
                                     {/* This is only a flag */}
-                                    <div class="relative h-48 w-full flex items-center px-10 my-10">
+                                    <div class="relative h-48 w-full flex items-center my-10">
                                         <div
                                             class="flag absolute top-36 w-full"
                                             use:intersectionObserver={(e) => {
